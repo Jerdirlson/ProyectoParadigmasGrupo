@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
-
+//Cuando se termine el juego se tiene que parar el contador 
 public class Tableros implements ActionListener{
 private JLabel fondoPanel, fondoPanelGeneral;
 	JLabel nombreJugador;
@@ -41,6 +41,11 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	private int posX;	//Posicion x de la carta
 	private int posY;	//Posicion y de la carta
 
+
+	private int seg,min; //Para el contador de segundos
+	private Timer tiempo;
+	private JLabel cronometro;
+
 	private int puntuacion = 0; //Puntuacion acumulada
 	private int puntuacionJugador2 = 0;
 	
@@ -64,6 +69,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	private JLayeredPane panelJuego;
 	private JLayeredPane panel;
 	private JLayeredPane panelGeneral;
+	
 	
 	
 	
@@ -131,7 +137,10 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			nombreJugador.setFont(new Font("Showcard Gothic", Font.PLAIN, 35));
 			panelGeneral.add(nombreJugador, new Integer(2));
 			
-			
+			cronometro = new JLabel();
+			cronometro.setBounds(50, 490, 500, 100);
+			cronometro.setFont(new Font("Showcard Gothic", Font.PLAIN, 35));
+			panelGeneral.add(cronometro, new Integer(2));
 			
 			//----------------------------------------Panel Juego----------------------------------
 			
@@ -354,9 +363,25 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			}
 		}
 		
-		
-		
 	
+		public void Timer(){
+			min = 0;
+			seg = 0;
+			tiempo = new Timer();
+
+			TimerTask tarea = new TimerTask(){
+
+				public void run(){
+					seg++;
+					if(seg==60){
+						min++;
+						seg = 0;
+					}
+					cronometro.setText("Tiempo: " + min +":" +seg);
+				}
+				};
+			tiempo.schedule(tarea,0,1000);
+			}
 	
 	//Actualiza la puntiación del jugador
 
@@ -425,7 +450,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		
 		for(int i = 0; i < size; i++) {
 			for(int j = 0; j < size; j++) { 
-				 System.out.print(matriz[i][j].getNombre());
+				System.out.print(matriz[i][j].getNombre());
 			}
 			System.out.println(" ");
 		}
@@ -528,6 +553,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			//Metodos modalidad Individual
 			modalidadIndividual(size);
 			labelPuntuacionJugadorUno();
+			Timer();
 			break;
 		case 2:
 			
@@ -537,6 +563,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			labelPuntuacionJugadorUno();
 			labelNombreJugadorDos();
 			labelPuntuacionJugadorDos();
+			Timer();
 			break;
 		case 3:
 		
