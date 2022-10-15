@@ -782,7 +782,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	   
 	}
 	
-
+// Esto es para ver si sirve el pull
 
 
 	public Tableros() {
