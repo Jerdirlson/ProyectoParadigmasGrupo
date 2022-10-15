@@ -49,6 +49,9 @@ private JLabel fondoPanel, fondoPanelGeneral;
 
 	private int puntuacion = 0; //Puntuacion acumulada
 	private int puntuacionJugador2 = 0;
+
+	private int CartasAjugar;
+	private int contadorPares = 0;
 	
 	private int contadorTurnoJugadores = 0;
 	
@@ -284,6 +287,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		if (getTemp() == getTemp2()) {
 			System.out.println("Cartas iguales");
 			//Si las cartas son iguales se deshabilita el boton y suma 10 puntos 
+			contadorPares = contadorPares + 1;
 			puntuacion = puntuacion + 10;
 			setPuntuacion(puntuacion);
 			deshabilitarBoton();
@@ -296,9 +300,27 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			botonEstadoNormal();
 			
 		}
-		
+		juegoTerminado();
 	}
-	
+	public void verificarImagenesModalidadMaquina() {
+		
+		setSumarContador(false);
+		
+		Timer timer = new Timer();
+		TimerTask tarea = new TimerTask() {
+			@Override
+			public void run() {
+								
+				validarImagenes();
+				bloquearSumarContador();
+				turnos.setText("MAQUINA");
+				carta1 = true;
+				carta2 = true;
+				
+			}	
+		};
+			timer.schedule(tarea, 1000);	
+	}
 	
 	//----Pone un timer de 2 segundos, funcionaria como la comparacion de las dos imagenes  ----
 		public void verificarImagenesModalidad2() {
@@ -331,7 +353,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			if (getTemp() == getTemp2()) {
 				System.out.println("Cartas iguales");
 				//Si las cartas son iguales se deshabilita el boton y suma 10 puntos 
-			
+				contadorPares = contadorPares + 1;
 				deshabilitarBoton();
 				if (contadorTurnoJugadores == 1) { //Actualiza la puntuacion en el jugador uno
 					
@@ -362,6 +384,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 					
 				}	
 			}
+			juegoTerminado();
 		}
 	
 	
@@ -526,7 +549,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	public void ventanaPartida (int size, int CartasAjugar, int modalidad) {
 		Cartas cartas = new Cartas();
 		cartas.generarCartas(); //Genero las cartas de la clase cartas
-
+		this.CartasAjugar = CartasAjugar;
 		armarTablero(cartas.getArrCartas(), size, CartasAjugar); //Al llamar este metodo las cartas se pondran en ligares aleatorios
 			
 		//un aleatoriaeda
@@ -567,7 +590,19 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			Timer();
 			break;
 		case 3:
+			
+		ModalidadJugadorMaquina(size);
 		
+		labelPuntuacionJugadorUno();
+		
+		labelNombreJugadorDos();
+		labelNombreJugadorDos.setText("MAQUINA");
+		labelPuntuacionJugadorDos();
+		turnoJugador();
+		
+
+
+
 			//Metodos modalidad 1vs maquina
 			
 			
@@ -770,7 +805,292 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		}
 	}
 	
+	//Modalidad de Bot
+
+	public void ModalidadJugadorMaquina(int size) {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				
+				matrizBotones[i][j].addMouseListener(new MouseAdapter(){
+					@Override
+					public void mousePressed (MouseEvent e) {
+						for (int k = 0; k < size; k++) {
+							for (int l = 0; l < size; l++) {
+														
+								//String imagen = ((Cartas) matriz[k][l]).getNombre();			
+								
+								if (e.getSource() == matrizBotones[k][l]) {
+									
+									if (isSumarContador() == true && matrizBotones[k][l].isEnabled() != false) {
+										
+										
+										posX = k;
+										posY = l;
+										if(carta1 == true || carta2 == true) {
+										contador++;	
+										System.out.println("Se sumó al contador");
+										}								
+									}else {
+										System.out.println("No se sumó");
+									}
+									
+									
+									if(contador == 1) {
+										
+										if (carta1 == true) {
+										insertarImagen();
+										temp = matriz[k][l].getId();
+										cartaSelec1x = k;
+										cartaSelec1y = l;
+										carta1 = false;
+										}
+									}
+									if(contador == 2) {
+										
+										
+										if (carta2 == true) {
+										insertarImagen();
+										temp2 = matriz[k][l].getId();
+										cartaSelec2x = k;
+										cartaSelec2y = l;										
+										carta2 = false;
+										}
+										
+									}
+					
+									if(contador == 2) {
+										
+										contador = 0;
+										
+										if(cartaSelec1x != cartaSelec2x || cartaSelec1y != cartaSelec2y) {
+											
+											verificarImagenesModalidadMaquina();
+											
+											bloquearSumarContador();
+											if(contadorPares < CartasAjugar - 1) {
+												System.out.println("pares: " + contadorPares);
+												maquinaVolteaImagnesTimer(size);
+											}else {
+												System.out.println("juego terminado");
+											}
+											
+										}else {
+											System.out.println("El boton es igual");
+											alertaCartaIgual();
+											contador = 1;
+											temp2 = -1;
+											cartaSelec2x = -1;
+											cartaSelec2y = -1;										
+											carta2 = true;
+											
+										}
+									}
+								}								
+							}	
+						}
+					}	
+				});
+			}
+		}
+	}
 	
+	
+	
+	
+	ramdomGenerate numeroRandom = new ramdomGenerate();
+	
+	int cartaSelec1xMaquina;
+	int	cartaSelec1yMaquina;
+	int cartaSelec2xMaquina;
+	int cartaSelec2yMaquina;
+	
+	
+	public int getCartaSelec1xMaquina() {
+		return cartaSelec1xMaquina;
+	}
+
+	public int getCartaSelec1yMaquina() {
+		return cartaSelec1yMaquina;
+	}
+
+	public int getCartaSelec2xMaquina() {
+		return cartaSelec2xMaquina;
+	}
+
+	public int getCartaSelec2yMaquina() {
+		return cartaSelec2yMaquina;
+	}
+
+	
+	public void turnoMaquina(int size) {
+		
+		//Inserta la primera imagen verificancando si el boton esta habilitado
+		
+		
+		cartaSelec1xMaquina = numeroRandom.eleccionMaquina(size - 1);
+		cartaSelec1yMaquina  = numeroRandom.eleccionMaquina(size - 1);
+		
+		if(matrizBotones[cartaSelec1xMaquina][cartaSelec1yMaquina].isEnabled() == true) {
+			
+			posX = cartaSelec1xMaquina ;
+			posY = cartaSelec1yMaquina ;			
+			insertarImagen();
+			//System.out.println("registra cartass Si");
+			
+		}else {
+			while(matrizBotones[cartaSelec1xMaquina][cartaSelec1yMaquina].isEnabled() == false) {
+				
+				cartaSelec1xMaquina = numeroRandom.eleccionMaquina(size - 1);
+				cartaSelec1yMaquina  = numeroRandom.eleccionMaquina(size - 1);
+				posX = cartaSelec1xMaquina ;
+				posY = cartaSelec1yMaquina ;			
+				System.out.println("registra cartass else");
+			}
+			insertarImagen();		
+		}
+		
+		
+		temp = matriz[cartaSelec1xMaquina][cartaSelec1yMaquina].getId();
+		System.out.println(cartaSelec1xMaquina + " " +cartaSelec1yMaquina);
+
+		
+		//Inserta la segunda imagen verificancando si el boton esta habilitado y que no permita darle clic a la misma carta
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+		cartaSelec2xMaquina  = numeroRandom.eleccionMaquina(size - 1);
+		cartaSelec2yMaquina  = numeroRandom.eleccionMaquina(size - 1);
+		
+		
+
+		if((cartaSelec2xMaquina != cartaSelec1xMaquina || cartaSelec2yMaquina != cartaSelec1yMaquina) && matrizBotones[cartaSelec2xMaquina][cartaSelec2yMaquina].isEnabled() == true) {
+			System.out.println("La imagen Cumple las condiciones");
+				
+			posX = cartaSelec2xMaquina;
+			posY = cartaSelec2yMaquina;
+			insertarImagen();
+			temp2 = matriz[cartaSelec2xMaquina][cartaSelec2yMaquina].getId();
+			System.out.println(cartaSelec2xMaquina + " " +cartaSelec2yMaquina);				
+		
+		
+		}else {
+			System.out.println("La imagen NO cumple las condiciones");
+				
+			while((cartaSelec2xMaquina == cartaSelec1xMaquina && cartaSelec2yMaquina == cartaSelec1yMaquina) || matrizBotones[cartaSelec2xMaquina][cartaSelec2yMaquina].isEnabled() == false) {
+				
+				cartaSelec2xMaquina  = numeroRandom.eleccionMaquina(size - 1);
+				cartaSelec2yMaquina  = numeroRandom.eleccionMaquina(size - 1);
+				
+			}	
+			posX = cartaSelec2xMaquina;
+			posY = cartaSelec2yMaquina;
+			insertarImagen();
+			temp2 = matriz[cartaSelec2xMaquina][cartaSelec2yMaquina].getId();
+		}
+			verificarImagenesMaquina();
+	}
+		
+	public void maquinaVolteaImagnesTimer(int size) {
+		
+		Timer timer = new Timer();
+		TimerTask tarea = new TimerTask() {
+			@Override
+			public void run() {						
+				//Tareas
+				
+				turnoMaquina(size);
+				
+			}	
+		};
+			timer.schedule(tarea, 2000);	
+	}
+	
+	public void deshabilitarBotonMaquina() {
+		
+		matrizBotones[getCartaSelec1xMaquina()][getCartaSelec1yMaquina()].setEnabled(false);
+		matrizBotones[getCartaSelec2xMaquina()][getCartaSelec2yMaquina()].setEnabled(false);	
+		
+		
+	}
+	
+	//----Pone un timer de 2 segundos, funcionaria como la comparacion de las dos imagenes  ----
+	public void verificarImagenesMaquina() {
+		
+		Timer timer = new Timer();
+		TimerTask tarea = new TimerTask() {
+			@Override
+			public void run() {
+								
+				validarImagenesMaquina();	
+				carta1 = true;
+				carta2 = true;
+				
+			}	
+		};
+			timer.schedule(tarea, 1000);	
+	}
+	
+	//Este metodo es llamado cuando el contador es = 2 	
+	public void validarImagenesMaquina() {
+		
+		if (getTemp() == getTemp2()) {
+			System.out.println("Cartas iguales");
+			//Si las cartas son iguales se deshabilita el boton y suma 10 puntos 
+			contadorPares = contadorPares + 1;
+			
+			puntuacionJugador2 = puntuacionJugador2 + 10;
+			
+			actualizarPuntuacionModalidad2();
+			deshabilitarBotonMaquina();
+			
+			
+		}else {
+			System.out.println("Son diferentes");
+			//Si las cartas son diferentes los botones vuelven al estado normal
+			botonEstadoNormalMaquina();
+			
+		}
+		turnos.setText("JUGADOR UNO");
+		juegoTerminado();
+	}
+		
+	public void botonEstadoNormalMaquina() {
+		
+		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.jpg");
+		matrizBotones[getCartaSelec1xMaquina()][getCartaSelec1yMaquina()].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+		matrizBotones[getCartaSelec2xMaquina()][getCartaSelec2yMaquina()].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH)));		
+		
+	}
+	
+	public void bloquearSumarContador() {
+		setSumarContador(false);
+		Timer timer = new Timer();
+		TimerTask tarea = new TimerTask() {
+			@Override
+			public void run() {
+								
+				//Poner aca sino sieve
+				setSumarContador(true);
+				
+			}	
+		};
+			timer.schedule(tarea, 3700);	
+	}
+		
+	public void juegoTerminado() {	
+		if(contadorPares == CartasAjugar) {
+			System.out.println("El juego terminó");
+		}
+	}
+
+
+
+
+
 	public void actionPerformed(ActionEvent e) {
 	   
 	   if (e.getSource() == botonSalir) {
