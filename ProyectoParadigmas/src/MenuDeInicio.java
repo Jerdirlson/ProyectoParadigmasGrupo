@@ -11,8 +11,9 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+
 	
-	
+
 	JLabel nomjudador,etiquetaTitulo, etiquetaNombreJugador, fondoPanel, creditos;
    	JButton puntajes,iniciarJuego,salir;
    	JTextField txtNomJugador;

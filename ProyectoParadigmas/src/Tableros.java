@@ -782,7 +782,13 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	   
 	}
 	
-
+	
+	
+	
+	
+	public void terminarJurgo(){
+		
+	}
 
 
 	public Tableros() {
