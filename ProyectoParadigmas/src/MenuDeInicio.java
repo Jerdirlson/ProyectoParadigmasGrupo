@@ -56,7 +56,7 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			
 			
 			etiquetaNombreJugador = new JLabel ("Nombre del jugador");
-			etiquetaNombreJugador.setBounds(570,200,600,70);
+			etiquetaNombreJugador.setBounds(590,200,600,70);
 			etiquetaNombreJugador.setFont(new Font("Cooper Black", Font.PLAIN, 30));
 			
 			
