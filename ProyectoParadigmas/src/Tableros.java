@@ -783,19 +783,6 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	}
 	
 
-	public void terminarJuego(){
-		
-	}
-
-
-
-
-
-
-
-
-
-
 
 
 	public Tableros() {
