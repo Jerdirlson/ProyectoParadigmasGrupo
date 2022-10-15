@@ -45,6 +45,7 @@ public class Menu extends JFrame implements ActionListener{
 		/**
 		 * 
 		 */
+		@SuppressWarnings("removal")
 		public Menu() {
 			
 			//Propiedades de esta ventana
@@ -57,7 +58,6 @@ public class Menu extends JFrame implements ActionListener{
 			ventanaMenu.setResizable(false);
 			ventanaMenu.setVisible(false);
 			
-			
 			//Propiedades del panelMenu
 			
 			panelMenu = new JLayeredPane();
@@ -68,10 +68,10 @@ public class Menu extends JFrame implements ActionListener{
 			ventanaMenu.add(panelMenu,0); 
 			
 			botonSalir = new JButton("Salir");
-            botonSalir.setBounds(55, 25, 100, 50);
-            botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-            botonSalir.addActionListener(this);
-            ventanaMenu.add(botonSalir);
+         botonSalir.setBounds(55, 25, 100, 50);
+         botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+         botonSalir.addActionListener(this);
+         ventanaMenu.add(botonSalir);
 			
 			//Propiedades del label
 			

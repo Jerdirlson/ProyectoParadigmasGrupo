@@ -26,7 +26,6 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 	      this.setDefaultCloseOperation(EXIT_ON_CLOSE);		//para que el programa despues de cerrado no se ejecute en segundo plano 
 	      this.setResizable(false);		//Quita el poder maximizar la pantalla
 	      this.setLayout(null);
-	   
 	      componentes();
 		}
 		

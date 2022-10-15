@@ -89,10 +89,10 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			panel.add(fondoPanel, new Integer(1));		//Agregamos el fondo al panelPresentacion
 			
 			botonSalir = new JButton("Salir");
-		    botonSalir.setBounds(55, 25, 100, 50);
-		    botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-		    botonSalir.addActionListener(this);
-		    panel.add(botonSalir, new Integer(2));
+		   botonSalir.setBounds(55, 25, 100, 50);
+		   botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+		   botonSalir.addActionListener(this);
+		   panel.add(botonSalir, new Integer(2));
 		
 			//----------------------------------------Panel General----------------------------------
 			//Panel donde va a tener el tiempo y el nombre del jugador
@@ -233,7 +233,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		matrizBotones[getCartaSelec1x()][getCartaSelec1y()].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
 		matrizBotones[getCartaSelec2x()][getCartaSelec2y()].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH)));		
 	
-	}	
+	}
 	
 	//---Metodo para deshabilitar el boton cuando las cartas son Iguales
 	
