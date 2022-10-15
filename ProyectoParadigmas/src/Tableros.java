@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
+// Hola esto es una prueba del pull
 
 //Cuando se termine el juego se tiene que parar el contador 
 public class Tableros implements ActionListener{
@@ -786,8 +787,8 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	}
 	
 	
-	
-	
+	// Hola esto es una prueba del pull
+	// Hola esto es una prueba del pull
 	
 	public void terminarJurgo(){
 		
