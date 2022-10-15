@@ -77,7 +77,7 @@ public class Menu extends JFrame implements ActionListener{
 			
 			fondoMenu = new JLabel();
 			fondoMenu.setSize(ventanaMenu.getWidth(),ventanaMenu.getHeight());
-			fondoMenu.setIcon(new ImageIcon("Imagenes/Fondo Juego.png"));
+			fondoMenu.setIcon(new ImageIcon("imagenes/Fondo Juego.png"));
 			fondoMenu.setVisible(true);
 			fondoMenu.setLocation(0,0);
 			panelMenu.add(fondoMenu,new Integer(1));
