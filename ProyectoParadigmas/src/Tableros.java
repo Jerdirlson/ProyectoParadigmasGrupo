@@ -362,7 +362,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 				}	
 			}
 		}
-		
+	
 	
 		public void Timer(){
 			min = 0;
@@ -782,6 +782,22 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	   
 	}
 	
+
+	public void terminarJuego(){
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	public Tableros() {
 		
 	}
