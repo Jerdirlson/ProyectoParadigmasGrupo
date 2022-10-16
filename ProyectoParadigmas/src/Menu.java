@@ -222,7 +222,6 @@ public class Menu extends JFrame implements ActionListener{
 			panelMenu2.setVisible(false);	
 			ventanaMenu.setVisible(true);
 			
-			
 		}
 
 		@Override
@@ -233,12 +232,12 @@ public class Menu extends JFrame implements ActionListener{
 			boolean confirmacion2 = false;
 			
 			if (e.getSource() == botonSalir) {
-			   
-			   ventanaMenu.setVisible(false);
-			   
-			   MenuDeInicio ventana = new MenuDeInicio();
-		      ventana.setVisible(true);
-		   
+			
+			ventanaMenu.setVisible(false);
+			
+			MenuDeInicio ventana = new MenuDeInicio();
+		   ventana.setVisible(true);
+		
 			}
 			
 			if (e.getSource() == boton1dificultad) {
@@ -307,9 +306,8 @@ public class Menu extends JFrame implements ActionListener{
 				
 				if ((confirmacion1 == true) && (confirmacion2 == true)) {
 					
-					
-					
 					tablero.ventanaPartida(tamTablero, cartasAJugar, modalidad);
+					ventanaMenu.setVisible(false);
 					
 					if (boton2modo.isSelected() == true ) {
 					tablero.labelNombreJugadorDos.setText(labelnombreJugador2.getText());
@@ -348,7 +346,7 @@ public class Menu extends JFrame implements ActionListener{
 					}
 				
 				
-					ventanaMenu.setVisible(false);
+					
 					
 				}
 				
