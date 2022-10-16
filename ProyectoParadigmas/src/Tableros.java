@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 
+
 //Cuando se termine el juego se tiene que parar el contador 
 public class Tableros implements ActionListener{
 private JLabel fondoPanel, fondoPanelGeneral;
@@ -36,13 +37,12 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	private int posX;	//Posicion x de la carta
 	private int posY;	//Posicion y de la carta
 
-	static private int seg,min; //Para el contador de segundos
-	static private Timer tiempo;
-	static JLabel cronometro;
-	private TimerTask tarea;
+	private int seg,min; //Para el contador de segundos
+	private Timer tiempo;
+	private JLabel cronometro;
 
-	int puntuacion = 0; //Puntuacion acumulada
-	int puntuacionJugador2 = 0;
+	private int puntuacion = 0; //Puntuacion acumulada
+	private int puntuacionJugador2 = 0;
 
 	private int CartasAjugar;
 	private int contadorPares = 0;
@@ -72,6 +72,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	public void componentes() {
 
 			//-------------------------------------------Panel------------------------------------
+			
 			//Propiedades JPanel
 			panel = new JLayeredPane();
 			panel.setLayout(null);	//Esto nos permite colocar los demas componentes donde queramos
@@ -228,14 +229,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	public int getContador() {
 		return contador;
 	}
-
-	public int getMin(){
-		return min;
-	}
-	
-	public int getSeg(){
-		return seg;
-	}
+		
 	//-----Metodo para regresar un boton al estado normal cuando las cartas son diferentes  --------
 	public void botonEstadoNormal() {
 			
@@ -373,11 +367,11 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		juegoTerminado();
 	}
 	
-	public void Cronometro(){
+	public void Timer(){
 			min = 0;
 			seg = 0;
 			tiempo = new Timer();
-			tarea = new TimerTask(){
+			TimerTask tarea = new TimerTask(){
 
 			public void run(){
 				seg++;
@@ -559,7 +553,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			//Metodos modalidad Individual
 			modalidadIndividual(size);
 			labelPuntuacionJugadorUno();
-			Cronometro();
+			Timer();
 			break;
 		case 2:
 			
@@ -569,7 +563,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			labelPuntuacionJugadorUno();
 			labelNombreJugadorDos();
 			labelPuntuacionJugadorDos();
-			Cronometro();
+			Timer();
 			break;
 		case 3:
 			
@@ -1062,39 +1056,12 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		};
 			timer.schedule(tarea, 3700);	
 	}
-	
-	public JLabel nombreGanador(){
-
-		if(puntuacion > puntuacionJugador2){
-			return nombreJugador;
-		}
-		else{
-			return labelNombreJugadorDos;
-		}
-	}
-
-	public int puntuacionGanador(){
-
-		if(nombreGanador().getText() == nombreJugador.getText()){
-			return puntuacion;
-		}
-		else{
-			return puntuacionJugador2;
-		}
-	}
-
-
+		
 	public void juegoTerminado() {	
 		if(contadorPares == CartasAjugar) {
-
 			System.out.println("El juego terminó");
-			tarea.cancel();
-			tiempo.cancel();
-			String mensaje = "El ganador fue: " + nombreGanador().getText() + " Su puntuacion fue: " + puntuacionGanador()+ " Con un tiempo total de " + getMin() + ":" + getSeg();
-			JOptionPane.showMessageDialog(null, mensaje, "Ganador!!", JOptionPane.INFORMATION_MESSAGE);
-			MenuDeInicio ventana = new MenuDeInicio();
-			ventana.setVisible(true);
-	      frame.setVisible(false);
+			
+		
 		}
 	}
 
@@ -1105,8 +1072,9 @@ private JLabel fondoPanel, fondoPanelGeneral;
          
 			MenuDeInicio ventana = new MenuDeInicio();
 			ventana.setVisible(true);
+	      
 	      frame.setVisible(false);
-	   }
+	    }
 	}
 
 	public Tableros() {	
