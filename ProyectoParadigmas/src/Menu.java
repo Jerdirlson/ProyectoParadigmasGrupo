@@ -281,7 +281,7 @@ public class Menu extends JFrame implements ActionListener{
 				
 				if (boton2modo.isSelected() == true ) {
 					
-					nombreJugador2 = JOptionPane.showInputDialog("Digite el nombre Jugador 2: ");
+					nombreJugador2 = JOptionPane.showInputDialog(null,"Digite el nombre Jugador 2: ", "Nombre jugador 2", JOptionPane.QUESTION_MESSAGE );
 					labelnombreJugador2.setText(nombreJugador2);
 					
 				}
@@ -295,16 +295,17 @@ public class Menu extends JFrame implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Seleccionar dificultad.");
 				}
 				
-				if ((boton1modo.isSelected() == true) || (boton2modo.isSelected() == true)||(boton3modo.isSelected() == true)) {
+				if ((boton1modo.isSelected() == true) || ((boton2modo.isSelected() == true)&&(nombreJugador2 != null))||(boton3modo.isSelected() == true)) {
 					confirmacion2 = true;
 				}
 				
 				else
 				{
 					JOptionPane.showMessageDialog(null, "Seleccionar modo.");
+
 				}
 				
-				if ((confirmacion1 == true) && (confirmacion2 == true)) {
+				if ((confirmacion1 == true) && (confirmacion2 == true) ) {
 					
 					tablero.ventanaPartida(tamTablero, cartasAJugar, modalidad);
 					ventanaMenu.setVisible(false);
