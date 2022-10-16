@@ -19,16 +19,11 @@ import javax.swing.JOptionPane;
 //Cuando se termine el juego se tiene que parar el contador 
 public class Tableros implements ActionListener{
 private JLabel fondoPanel, fondoPanelGeneral;
+	
 	JLabel nombreJugador;
-
 	JLabel tipoDificultad;
-
 	JLabel tipoModo;
-
-	
-
 	private JLabel fondoPanelJuego;
-	
 	
 	private JButton[][] matrizBotones; //En esta matriz se crean los botones
 	private Cartas[][] matriz; //Una matriz auxiliar para guardar la aleaotriedad de las cartas
@@ -42,7 +37,6 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	private int contador = 0;	//Contador de cuantas cartas han sido seleccionadas
 	private int posX;	//Posicion x de la carta
 	private int posY;	//Posicion y de la carta
-
 
 	private int seg,min; //Para el contador de segundos
 	private Timer tiempo;
@@ -74,10 +68,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	private JLayeredPane panelJuego;
 	private JLayeredPane panel;
 	private JLayeredPane panelGeneral;
-	
-	
-	
-	
+		
 	@SuppressWarnings({ "removal" })
 	public void componentes() {
 
@@ -257,9 +248,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		matrizBotones[getCartaSelec2x()][getCartaSelec2y()].setEnabled(false);	
 		
 	}
-	
-	
-	
+		
 	//----Pone un timer de 2 segundos, funcionaria como la comparacion de las dos imagenes  ----
 	public void verificarImagenes() {
 		
@@ -279,8 +268,6 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		};
 			timer.schedule(tarea, 1000);	
 	}
-	
-
 	
 	//Este metodo es llamado cuando el contador es = 2 	
 	public void validarImagenes() {
@@ -303,6 +290,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		}
 		juegoTerminado();
 	}
+
 	public void verificarImagenesModalidadMaquina() {
 		
 		setSumarContador(false);
@@ -324,7 +312,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 	}
 	
 	//----Pone un timer de 2 segundos, funcionaria como la comparacion de las dos imagenes  ----
-		public void verificarImagenesModalidad2() {
+	public void verificarImagenesModalidad2() {
 			
 			setSumarContador(false);
 			
@@ -345,68 +333,58 @@ private JLabel fondoPanel, fondoPanelGeneral;
 				
 		}
 		
-
-		
 		//Este metodo es llamado cuando el contador es = 2 	
-		public void validarImagenesModalidad2() {
-			
-		   
-			if (getTemp() == getTemp2()) {
-				System.out.println("Cartas iguales");
-				//Si las cartas son iguales se deshabilita el boton y suma 10 puntos 
-				contadorPares = contadorPares + 1;
-				deshabilitarBoton();
-				if (contadorTurnoJugadores == 1) { //Actualiza la puntuacion en el jugador uno
-					
-					puntuacion = puntuacion + 10;
-					setPuntuacion(puntuacion);
-					actualizarPuntuacion();
-					
-				} //Actualiza la puntuacion en el jugador Dos
-				if (contadorTurnoJugadores == 2) {
-					
-					puntuacionJugador2 = puntuacionJugador2 + 10;
-					setPuntuacionJugador2(puntuacionJugador2);
-					actualizarPuntuacionModalidad2();
-					contadorTurnoJugadores = 0;
-				}
+	public void validarImagenesModalidad2() {
+			   
+		if (getTemp() == getTemp2()) {
+			System.out.println("Cartas iguales");
+			//Si las cartas son iguales se deshabilita el boton y suma 10 puntos 
+			contadorPares = contadorPares + 1;
+			deshabilitarBoton();
+			if (contadorTurnoJugadores == 1) { //Actualiza la puntuacion en el jugador uno
 				
+				puntuacion = puntuacion + 10;
+				setPuntuacion(puntuacion);
+				actualizarPuntuacion();
 				
+			} //Actualiza la puntuacion en el jugador Dos
+			if (contadorTurnoJugadores == 2) {
 				
+				puntuacionJugador2 = puntuacionJugador2 + 10;
+				setPuntuacionJugador2(puntuacionJugador2);
+				actualizarPuntuacionModalidad2();
+				contadorTurnoJugadores = 0;
+			}		
 				
-			}else {
-				System.out.println("Son diferentes");
-				//Si las cartas son diferentes los botones vuelven al estado normal
-				botonEstadoNormal();
-					
-				//Actualiza la puntuacion en el jugador Dos
-				if (contadorTurnoJugadores == 2) {	
-					contadorTurnoJugadores = 0;
-					
-				}	
-			}
-			juegoTerminado();
+		}else {
+			System.out.println("Son diferentes");
+			//Si las cartas son diferentes los botones vuelven al estado normal				
+			botonEstadoNormal();			
+			//Actualiza la puntuacion en el jugador Dos
+			if (contadorTurnoJugadores == 2) {	
+				contadorTurnoJugadores = 0;				
+			}	
 		}
+		juegoTerminado();
+	}
 	
-	
-		public void Timer(){
+	public void Timer(){
 			min = 0;
 			seg = 0;
 			tiempo = new Timer();
-
 			TimerTask tarea = new TimerTask(){
 
-				public void run(){
-					seg++;
-					if(seg==60){
-						min++;
-						seg = 0;
-					}
-					cronometro.setText("Tiempo: " + min +":" +seg);
+			public void run(){
+				seg++;
+				if(seg==60){
+					min++;
+					seg = 0;
 				}
-				};
-			tiempo.schedule(tarea,0,1000);
+				cronometro.setText("Tiempo: " + min +":" +seg);
 			}
+			};
+		tiempo.schedule(tarea,0,1000);
+	}
 	
 	//Actualiza la puntiación del jugador
 
@@ -538,8 +516,6 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		}
 	}
 	
-	
-
 	/**
 	 * 
 	 * @param size - tamaño del tablero va de la mano con cartasAJugar, sus valores solo pueden ser 4,6,8
@@ -1088,10 +1064,6 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		}
 	}
 
-
-
-
-
 	public void actionPerformed(ActionEvent e) {
 	   
 	   if (e.getSource() == botonSalir) {
@@ -1102,15 +1074,9 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			ventana.setVisible(true);
 	      
 	      frame.setVisible(false);
-	  }
-	   
+	    }
 	}
-	
 
-	public Tableros() {
-		
+	public Tableros() {	
 	}
-	
 }
-
-
