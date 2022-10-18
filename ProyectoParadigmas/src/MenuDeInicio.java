@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.crypto.spec.DESKeySpec;
 import javax.swing.*;
 
 public class MenuDeInicio extends JFrame implements ActionListener{
@@ -11,6 +12,7 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
+	
 
 	
 
@@ -52,7 +54,7 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			
 			etiquetaTitulo = new JLabel ("Juego de memoria");  //Se establece lo que debe contener la etiqueta 
 			etiquetaTitulo.setBounds(470, 80, 600, 70);		//Se utiliza para definir un rectangulo delimitador para la etiqueta 
-			etiquetaTitulo.setFont(new Font("Showcard Gothic", Font.PLAIN, 60));		//se usa para definir el tipo de letra y el tamaño
+			etiquetaTitulo.setFont(new Font("Cooper Black", Font.PLAIN, 52));		//se usa para definir el tipo de letra y el tamaño
 			
 			
 			etiquetaNombreJugador = new JLabel ("Nombre del jugador");

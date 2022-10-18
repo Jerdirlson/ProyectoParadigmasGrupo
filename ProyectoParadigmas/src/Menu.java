@@ -7,6 +7,7 @@ public class Menu extends JFrame implements ActionListener{
 		
 	public int tamTablero, cartasAJugar, modalidad;
 	
+
 	
 		/**
 	 * 
@@ -39,7 +40,8 @@ public class Menu extends JFrame implements ActionListener{
 
 
 		private JLabel labelnombreJugador2;
-
+		
+		
 
 		
 		/**
@@ -87,7 +89,7 @@ public class Menu extends JFrame implements ActionListener{
 			
 			etiquetaTitulo = new JLabel ("Elija los modos de juego");  //Se establece lo que debe contener la etiqueta 
 			etiquetaTitulo.setBounds(300, 80, 900, 100);		//Se utiliza para definir un rectangulo delimitador para la etiqueta 
-			etiquetaTitulo.setFont(new Font("Showcard Gothic", Font.PLAIN, 65));		//se usa para definir el tipo de letra y el tamaño
+			etiquetaTitulo.setFont(new Font("Cooper Black", Font.PLAIN, 65));		//se usa para definir el tipo de letra y el tamaño
 			panelMenu.add(etiquetaTitulo, new Integer(2));	
 			
 			//Dificultad
