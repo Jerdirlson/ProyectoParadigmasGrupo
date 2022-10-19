@@ -1082,6 +1082,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		else{
 			return labelNombreJugadorDos;
 		}
+		
 	}
 
 	public int puntuacionGanador(){
@@ -1101,8 +1102,18 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			System.out.println("El juego terminó");
 			tarea.cancel();
 			tiempo.cancel();
+			
+			
+			if (puntuacion != puntuacionJugador2){
 			String mensaje = "El ganador fue: " + nombreGanador().getText() + " Su puntuacion fue: " + puntuacionGanador()+ " Con un tiempo total de " + getMin() + ":" + getSeg();
 			JOptionPane.showMessageDialog(null, mensaje, "Ganador!!", JOptionPane.INFORMATION_MESSAGE);
+			}else{
+			String mensaje = "Empate "+" con un tiempo total de " + getMin() + ":" + getSeg();
+			JOptionPane.showMessageDialog(null, mensaje, "Empate!!", JOptionPane.INFORMATION_MESSAGE);	
+
+			}
+
+
 			MenuDeInicio ventana = new MenuDeInicio();
 			ventana.setVisible(true);
 	      frame.setVisible(false);
