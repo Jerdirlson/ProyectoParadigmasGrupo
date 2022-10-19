@@ -1095,7 +1095,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 		}
 	}
 
-
+	
 	public void juegoTerminado() {	
 		if(contadorPares == CartasAjugar) {
 
@@ -1103,14 +1103,29 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			tarea.cancel();
 			tiempo.cancel();
 			
+
+			
+			
+			
 			
 			if (puntuacion != puntuacionJugador2){
-			String mensaje = "El ganador fue: " + nombreGanador().getText() + " Su puntuacion fue: " + puntuacionGanador()+ " Con un tiempo total de " + getMin() + ":" + getSeg();
-			JOptionPane.showMessageDialog(null, mensaje, "Ganador!!", JOptionPane.INFORMATION_MESSAGE);
+				if(getSeg() <10 ){
+				String mensaje = "El ganador fue: " + nombreGanador().getText() + " Su puntuacion fue: " + puntuacionGanador()+ " Con un tiempo total de " + getMin() + ":" +"0"+ getSeg();
+				JOptionPane.showMessageDialog(null, mensaje, "Ganador!!", JOptionPane.INFORMATION_MESSAGE);
+	
+				}else{
+				String mensaje = "El ganador fue: " + nombreGanador().getText() + " Su puntuacion fue: " + puntuacionGanador()+ " Con un tiempo total de " + getMin() + ":" + getSeg();
+				JOptionPane.showMessageDialog(null, mensaje, "Ganador!!", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}else{
-			String mensaje = "Empate "+" con un tiempo total de " + getMin() + ":" + getSeg();
-			JOptionPane.showMessageDialog(null, mensaje, "Empate!!", JOptionPane.INFORMATION_MESSAGE);	
+				if(getSeg() <10){
+					String mensaje = "Empate "+" con un tiempo total de " + getMin() + ":" + "0"+getSeg();
+					JOptionPane.showMessageDialog(null, mensaje, "Empate!!", JOptionPane.INFORMATION_MESSAGE);	
+				}else{
 
+					String mensaje = "Empate "+" con un tiempo total de " + getMin() + ":" + getSeg();
+					JOptionPane.showMessageDialog(null, mensaje, "Empate!!", JOptionPane.INFORMATION_MESSAGE);	
+				}
 			}
 
 
