@@ -150,7 +150,7 @@ public class Menu extends JFrame implements ActionListener{
 			
 			//Creacion de boton 1vs maquina
 			
-			boton3modo = new JToggleButton ("VS IA", false);
+			boton3modo = new JToggleButton ("VS BOT", false);
 			boton3modo.setBounds(920,490,150,80);
 			boton3modo.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
 			panelMenu.add(boton3modo, new Integer(10));

@@ -53,7 +53,8 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			
 			
 			etiquetaTitulo = new JLabel ("Juego de memoria");  //Se establece lo que debe contener la etiqueta 
-			etiquetaTitulo.setBounds(470, 80, 600, 70);		//Se utiliza para definir un rectangulo delimitador para la etiqueta 
+			etiquetaTitulo.setBounds(470, 80, 600, 70);
+			etiquetaTitulo.setHorizontalAlignment(JTextField.CENTER);		//Se utiliza para definir un rectangulo delimitador para la etiqueta 
 			etiquetaTitulo.setFont(new Font("Cooper Black", Font.PLAIN, 52));		//se usa para definir el tipo de letra y el tamaño
 			
 			
