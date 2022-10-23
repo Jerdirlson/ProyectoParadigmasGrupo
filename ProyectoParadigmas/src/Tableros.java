@@ -89,10 +89,10 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			panel.add(fondoPanel, new Integer(1));		//Agregamos el fondo al panelPresentacion
 			
 			botonSalir = new JButton("Salir");
-		   botonSalir.setBounds(55, 25, 100, 50);
-		   botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-		   botonSalir.addActionListener(this);
-		   panel.add(botonSalir, new Integer(2));
+			botonSalir.setBounds(55, 25, 100, 50);
+		    botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+		    botonSalir.addActionListener(this);
+		    panel.add(botonSalir, new Integer(2));
 		
 			//----------------------------------------Panel General----------------------------------
 			//Panel donde va a tener el tiempo y el nombre del jugador
@@ -1094,19 +1094,25 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			return puntuacionJugador2;
 		}
 	}
-
 	
+	creacionxml xml = new creacionxml();
+
+	public String obtenerNombreInicio;
+	public String modoJugado;
+
+
 	public void juegoTerminado() {	
 		if(contadorPares == CartasAjugar) {
+			obtenerNombreInicio = nombreJugador.getText();
+			modoJugado = tipoModo.getText();
 
+			
+
+			
 			System.out.println("El juego terminó");
 			tarea.cancel();
 			tiempo.cancel();
-			
-
-			
-			
-			
+			xml.crearArchivo(puntuacion, obtenerNombreInicio, min,seg, modoJugado);
 			
 			if (puntuacion != puntuacionJugador2){
 				if(getSeg() <10 ){
@@ -1129,9 +1135,14 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			}
 
 
-			MenuDeInicio ventana = new MenuDeInicio();
-			ventana.setVisible(true);
-	      frame.setVisible(false);
+		MenuDeInicio ventana = new MenuDeInicio();
+		ventana.setVisible(true);
+	    frame.setVisible(false);
+
+		System.out.println(String.valueOf(getPuntuacion()));
+		
+
+
 		}
 	}
 

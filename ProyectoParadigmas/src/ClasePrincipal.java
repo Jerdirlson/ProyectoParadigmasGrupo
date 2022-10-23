@@ -4,6 +4,8 @@ public class ClasePrincipal {
 		
 		MenuDeInicio ventana = new MenuDeInicio();
 		ventana.setVisible(true);
+		
+
 		/*Menu ventana = new Menu();
 		ventana.setVisible(true);
 		

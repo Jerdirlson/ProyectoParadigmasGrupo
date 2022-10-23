@@ -23,22 +23,11 @@ public class Menu extends JFrame implements ActionListener{
 
 
 		private JLabel fondoPanelMenu;
-
-
 		JLayeredPane panelMenu, panelMenu2;
-
-
-		private JLabel etiquetaNombreJugador;
-		
+		private JLabel etiquetaNombreJugador;	
 		private String nombreJugador2;
-
-
 		private JTextField txtNomJugador;
-
-
 		private JButton iniciarJuego, botonSalir;
-
-
 		private JLabel labelnombreJugador2;
 		
 		
@@ -70,10 +59,10 @@ public class Menu extends JFrame implements ActionListener{
 			ventanaMenu.add(panelMenu,0); 
 			
 			botonSalir = new JButton("Salir");
-         botonSalir.setBounds(55, 25, 100, 50);
-         botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-         botonSalir.addActionListener(this);
-         ventanaMenu.add(botonSalir);
+         	botonSalir.setBounds(55, 25, 100, 50);
+         	botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+         	botonSalir.addActionListener(this);
+         	ventanaMenu.add(botonSalir);
 			
 			//Propiedades del label
 			
