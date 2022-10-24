@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -645,7 +644,7 @@ public class Tableros implements ActionListener {
 				}
 				positionBotonx = positionBotonx + 107;
 			}
-		}else{
+		}else if (size == 4){
 			int positionBotonx = 0;
 			for (int i = 0; i < size; i++) {
 				int positionBotony = 0;
@@ -662,6 +661,23 @@ public class Tableros implements ActionListener {
 				}
 				positionBotonx = positionBotonx + 155;
 		}
+	}else{
+		int positionBotonx = 0;
+			for (int i = 0; i < size; i++) {
+				int positionBotony = 0;
+				for (int j = 0; j < size; j++) {
+
+					matrizBotones[i][j] = new JButton();
+					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 70, 70);
+					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(
+					matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
+
+					panelJuego.add(matrizBotones[i][j], new Integer(10));
+
+					positionBotony = positionBotony + 80;
+				}
+				positionBotonx = positionBotonx + 80;
+			}
 	}
 
 
