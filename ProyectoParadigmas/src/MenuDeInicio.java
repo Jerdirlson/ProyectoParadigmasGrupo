@@ -155,6 +155,10 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 		               System.exit(0);
 				
 			}
-		}
 		
+			if (e.getSource() == puntajes){
+				puntajes mostarPuntajes = new puntajes();
+				mostarPuntajes.generarTabla();
+			}
+		}
 }

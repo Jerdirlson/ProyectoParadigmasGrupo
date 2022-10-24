@@ -571,6 +571,7 @@ private JLabel fondoPanel, fondoPanelGeneral;
 			modalidadIndividual(size);
 			labelPuntuacionJugadorUno();
 			cronometro();
+			labelNombreJugadorDos();
 			break;
 		case 2:
 			
@@ -1099,21 +1100,32 @@ private JLabel fondoPanel, fondoPanelGeneral;
 
 	public String obtenerNombreInicio;
 	public String modoJugado;
+	public String dificultadJugada;
+	String nombreJugador2 = "";
 
 
 	public void juegoTerminado() {	
 		if(contadorPares == CartasAjugar) {
 			obtenerNombreInicio = nombreJugador.getText();
 			modoJugado = tipoModo.getText();
+			dificultadJugada = tipoDificultad.getText();
+			
+			if (labelNombreJugadorDos.getText() == null){
+				nombreJugador2 = "Jugador2";
 
+			}else{
+				nombreJugador2 = labelNombreJugadorDos.getText();
+			}
 			
 
 			
 			System.out.println("El juego terminó");
 			tarea.cancel();
 			tiempo.cancel();
-			xml.crearArchivo(puntuacion, obtenerNombreInicio, min,seg, modoJugado);
+			xml.crearArchivo(puntuacion, obtenerNombreInicio, min,seg, modoJugado ,nombreJugador2,puntuacionJugador2, dificultadJugada);
 			
+
+			xml.registrosXML();
 			if (puntuacion != puntuacionJugador2){
 				if(getSeg() <10 ){
 				String mensaje = "El ganador fue: " + nombreGanador().getText() + " Su puntuacion fue: " + puntuacionGanador()+ " Con un tiempo total de " + getMin() + ":" +"0"+ getSeg();

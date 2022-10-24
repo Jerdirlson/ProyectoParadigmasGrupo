@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -6,7 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
@@ -22,9 +22,27 @@ import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 public class creacionxml {
-    
+	
+/**
+ * 
+ * @param puntos
+ * @param nombreJugador
+ * @param minutos
+ * @param segundos
+ * @param modoSelecciondo
+ * @param nombreJugador2
+ * @param puntuacionJugador2
+ * @param dificultadString
+ */
 
-	public void crearArchivo(int puntos,String nombreJugador, int minutos, int segundos,String modoSelecciondo){
+	public String[][] datosXML = new String[3][5];
+
+	public String[][] getDatosXML() {
+		return datosXML;
+	}
+	
+
+	public void crearArchivo(int puntos,String nombreJugador, int minutos, int segundos,String modoSelecciondo, String nombreJugador2,int puntuacionJugador2, String dificultadString){
 		
 		String seg;
 		//String puntosJugador = String.valueOf(obternerDatos.getPuntuacion());
@@ -57,6 +75,11 @@ public class creacionxml {
 			modo.appendChild(textModo);
 			puntaje.appendChild(modo);
 			
+			Element dificultad = documento.createElement("dificultad");
+			Text textDificultad = documento.createTextNode(dificultadString);
+			dificultad.appendChild(textDificultad);
+			puntaje.appendChild(dificultad);
+
 			Element tiempo = documento.createElement("tiempo");
 			Text textTiempo= documento.createTextNode(String.valueOf(minutos)+":"+seg);
 			tiempo.appendChild(textTiempo);
@@ -68,6 +91,69 @@ public class creacionxml {
 			puntaje.appendChild(puntuacion);	
             
             puntajes.appendChild(puntaje);
+		
+			// puntjaesss dossssssssssssssssss
+
+			Element puntaje2 = documento.createElement("puntaje");
+			
+			Element nombre2 = documento.createElement("nombre");
+			Text textNombre2 = documento.createTextNode(nombreJugador2);
+            nombre2.appendChild(textNombre2);
+			puntaje2.appendChild(nombre2);
+			
+			Element modo2 = documento.createElement("modo");
+			Text textModo2 = documento.createTextNode(modoSelecciondo);
+			modo2.appendChild(textModo2);
+			puntaje2.appendChild(modo2);
+
+			Element dificultad2 = documento.createElement("dificultad");
+			Text textDificultad2 = documento.createTextNode(dificultadString);
+			dificultad2.appendChild(textDificultad2);
+			puntaje2.appendChild(dificultad2);
+			
+			Element tiempo2 = documento.createElement("tiempo");
+			Text textTiempo2= documento.createTextNode(String.valueOf(minutos)+":"+seg);
+			tiempo2.appendChild(textTiempo2);
+			puntaje2.appendChild(tiempo2);
+
+            Element puntuacion2 = documento.createElement("puntuacion");
+			Text textPuntuacon2= documento.createTextNode(String.valueOf(puntuacionJugador2));
+			puntuacion2.appendChild(textPuntuacon2);
+			puntaje2.appendChild(puntuacion2);	
+			
+			puntajes.appendChild(puntaje2);
+
+			// Puntaje tressssssssss
+
+			Element puntaje3 = documento.createElement("puntaje");
+			
+			Element nombre3 = documento.createElement("nombre");
+			Text textNombre3 = documento.createTextNode("Juan");
+            nombre3.appendChild(textNombre3);
+			puntaje3.appendChild(nombre3);
+			
+			Element modo3 = documento.createElement("modo");
+			Text textModo3 = documento.createTextNode("Maquina");
+			modo3.appendChild(textModo3);
+			puntaje3.appendChild(modo3);
+
+			Element dificultad3 = documento.createElement("dificultad");
+			Text textDificultad3 = documento.createTextNode("6x6");
+			dificultad3.appendChild(textDificultad3);
+			puntaje3.appendChild(dificultad3);
+			
+			Element tiempo3 = documento.createElement("tiempo");
+			Text textTiempo3= documento.createTextNode("0:42");
+			tiempo3.appendChild(textTiempo3);
+			puntaje3.appendChild(tiempo3);
+
+            Element puntuacion3 = documento.createElement("puntuacion");
+			Text textPuntuacon3= documento.createTextNode(String.valueOf("120"));
+			puntuacion3.appendChild(textPuntuacon3);
+			puntaje3.appendChild(puntuacion3);	
+			
+			puntajes.appendChild(puntaje3);
+
 			documento.getDocumentElement().appendChild(puntajes);
 			
 			Source source = new DOMSource(documento);
@@ -76,23 +162,64 @@ public class creacionxml {
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.transform(source, result);
 			
-		
-
-
-
-
-
-
-
-
-
-
-
             
 		} catch (ParserConfigurationException | TransformerFactoryConfigurationError | TransformerException e) {
 			System.out.println();
 		}
-
-
     }
+
+	/**
+	 * 
+	 */
+	public void registrosXML(){
+
+		try {
+			// Creo una instancia de DocumentBuilderFactory
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			// Creo un documentBuilder
+			DocumentBuilder builder = factory.newDocumentBuilder();
+
+			// Obtengo el documento, a partir del XML
+			Document documento = builder.parse(new File("puntajes.xml"));
+
+			// Cojo todas las etiquetas coche del documento
+			NodeList listaPuntaje = documento.getElementsByTagName("puntaje");
+
+			// Recorro las etiquetas
+			for (int i = 0; i < listaPuntaje.getLength(); i++) {
+				// Cojo el nodo actual
+				Node nodo = listaPuntaje.item(i);
+				// Compruebo si el nodo es un elemento
+				if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+					// Lo transformo a Element
+					Element e = (Element) nodo;
+					// Obtengo sus hijos
+					NodeList hijos = e.getChildNodes();
+					// Recorro sus hijos
+					for (int j = 0; j < hijos.getLength(); j++) {
+						// Obtengo al hijo actual
+						Node hijo = hijos.item(j);
+						// Compruebo si es un nodo
+						if (hijo.getNodeType() == Node.ELEMENT_NODE) {
+							// Muestro el contenido
+							System.out.println("Propiedad: " + hijo.getNodeName() + ", Valor: " + hijo.getTextContent());
+							
+							System.out.println(i + " " + j);
+							datosXML[i][j] = hijo.getTextContent();
+						}
+
+					}
+					System.out.println("");
+				}
+
+			}
+
+		} catch (ParserConfigurationException | SAXException | IOException ex) {
+			System.out.println("h");
+		}
+
+
+
+
+	}
 }
