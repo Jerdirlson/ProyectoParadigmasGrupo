@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -94,6 +96,7 @@ public class Tableros implements ActionListener {
 		botonSalir.setBounds(55, 25, 100, 50);
 		botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
 		botonSalir.addActionListener(this);
+		botonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(botonSalir, new Integer(2));
 
 		// ----------------------------------------Panel
@@ -238,13 +241,14 @@ public class Tableros implements ActionListener {
 	// diferentes --------
 	public void botonEstadoNormal() {
 
-		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.jpg");
+		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.png");
 		matrizBotones[getCartaSelec1x()][getCartaSelec1y()].setIcon(
-				new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),
-						matrizBotones[getPosX()][getPosY()].getHeight(), Image.SCALE_SMOOTH)));
+		new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),
+		matrizBotones[getPosX()][getPosY()].getHeight(), Image.SCALE_SMOOTH)));
 		matrizBotones[getCartaSelec2x()][getCartaSelec2y()].setIcon(
-				new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),
-						matrizBotones[getPosX()][getPosY()].getHeight(), Image.SCALE_SMOOTH)));
+		new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),
+		matrizBotones[getPosX()][getPosY()].getHeight(), Image.SCALE_SMOOTH)));
+		
 
 	}
 
@@ -253,8 +257,10 @@ public class Tableros implements ActionListener {
 	public void deshabilitarBoton() {
 
 		matrizBotones[getCartaSelec1x()][getCartaSelec1y()].setEnabled(false);
+		matrizBotones[getCartaSelec1x()][getCartaSelec1y()].setBorder(BorderFactory.createLineBorder(Color.gray));
 		matrizBotones[getCartaSelec2x()][getCartaSelec2y()].setEnabled(false);
-
+		matrizBotones[getCartaSelec2x()][getCartaSelec2y()].setBorder(BorderFactory.createLineBorder(Color.gray));
+		
 	}
 
 	// ----Pone un timer de 2 segundos, funcionaria como la comparacion de las dos
@@ -436,7 +442,7 @@ public class Tableros implements ActionListener {
 		matrizBotones[getPosX()][getPosY()].setOpaque(true);
 		matrizBotones[getPosX()][getPosY()].setBackground(Color.white);
 		matrizBotones[getPosX()][getPosY()].setIcon(new ImageIcon(imagenAColocar.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),matrizBotones[getPosX()][getPosY()].getWidth(), Image.SCALE_SMOOTH)));
-
+		
 	}
 
 	// Este metodo arma el tablero de forma aleatoria
@@ -607,7 +613,7 @@ public class Tableros implements ActionListener {
 	// Este metodo crea todos los botones
 	@SuppressWarnings("removal")
 	public void crearBotones(int size) {
-		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.jpg");
+		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.png");
 		matrizBotones = new JButton[size][size];
 
 		if (size == 8) {
@@ -620,7 +626,8 @@ public class Tableros implements ActionListener {
 					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 70, 70);
 					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(
 					matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
-
+					matrizBotones[i][j].setBorder(null);
+					matrizBotones[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
 					panelJuego.add(matrizBotones[i][j], new Integer(10));
 
 					positionBotony = positionBotony + 80;
@@ -637,7 +644,8 @@ public class Tableros implements ActionListener {
 					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 96, 96);
 					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(
 					matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
-
+					matrizBotones[i][j].setBorder(null);
+					matrizBotones[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
 					panelJuego.add(matrizBotones[i][j], new Integer(10));
 
 					positionBotony = positionBotony + 107;
@@ -651,15 +659,15 @@ public class Tableros implements ActionListener {
 				for (int j = 0; j < size; j++) {
 
 					matrizBotones[i][j] = new JButton();
-					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 145, 145);
-					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(
-					matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
-
+					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 147, 147);
+					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
+					matrizBotones[i][j].setBorder(null);
+					matrizBotones[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
 					panelJuego.add(matrizBotones[i][j], new Integer(10));
 
-					positionBotony = positionBotony + 155;
+					positionBotony = positionBotony + 157;
 				}
-				positionBotonx = positionBotonx + 155;
+				positionBotonx = positionBotonx + 157;
 		}
 	}else{
 		int positionBotonx = 0;
@@ -1041,7 +1049,10 @@ public class Tableros implements ActionListener {
 	public void deshabilitarBotonMaquina() {
 
 		matrizBotones[getCartaSelec1xMaquina()][getCartaSelec1yMaquina()].setEnabled(false);
+		matrizBotones[getCartaSelec1xMaquina()][getCartaSelec1yMaquina()].setBorder(BorderFactory.createLineBorder(Color.gray));
 		matrizBotones[getCartaSelec2xMaquina()][getCartaSelec2yMaquina()].setEnabled(false);
+		matrizBotones[getCartaSelec2xMaquina()][getCartaSelec2yMaquina()].setBorder(BorderFactory.createLineBorder(Color.gray));
+		
 
 	}
 
@@ -1088,7 +1099,7 @@ public class Tableros implements ActionListener {
 
 	public void botonEstadoNormalMaquina() {
 
-		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.jpg");
+		ImageIcon interrogante = new ImageIcon("imagenes/interrogante.png");
 		matrizBotones[getCartaSelec1xMaquina()][getCartaSelec1yMaquina()].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),matrizBotones[getPosX()][getPosY()].getWidth(), Image.SCALE_SMOOTH)));
 		matrizBotones[getCartaSelec2xMaquina()][getCartaSelec2yMaquina()].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[getPosX()][getPosY()].getWidth(),matrizBotones[getPosX()][getPosY()].getWidth(), Image.SCALE_SMOOTH)));
 
@@ -1141,7 +1152,7 @@ public class Tableros implements ActionListener {
 			modoJugado = tipoModo.getText();
 			dificultadJugada = tipoDificultad.getText();
 
-			if (labelNombreJugadorDos.getText() == null) {
+			if (labelNombreJugadorDos.getText() == "") {
 				nombreJugador2 = "Jugador2";
 
 			} else {
