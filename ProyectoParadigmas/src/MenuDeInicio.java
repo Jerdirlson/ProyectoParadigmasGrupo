@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,15 +58,17 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			panel.add(fondoPanel, new Integer(1));
 			
 			
-			etiquetaTitulo = new JLabel ("Juego de memoria");  //Se establece lo que debe contener la etiqueta 
-			etiquetaTitulo.setBounds(470, 80, 600, 70);
-			etiquetaTitulo.setHorizontalAlignment(JTextField.CENTER);		//Se utiliza para definir un rectangulo delimitador para la etiqueta 
-			etiquetaTitulo.setFont(new Font("Cooper Black", Font.PLAIN, 52));		//se usa para definir el tipo de letra y el tamaño
+			etiquetaTitulo = new JLabel ("Angry Birds Memory");  //Se establece lo que debe contener la etiqueta 
+			etiquetaTitulo.setBounds(450, 80, 600, 70);
+			etiquetaTitulo.setHorizontalAlignment(JTextField.CENTER);	
+			etiquetaTitulo.setForeground(Color.BLACK);//Se utiliza para definir un rectangulo delimitador para la etiqueta 
+			etiquetaTitulo.setFont(new Font("AngryBirds", Font.PLAIN, 60));		//se usa para definir el tipo de letra y el tamaño
 			
 			
 			etiquetaNombreJugador = new JLabel ("Nombre del jugador");
-			etiquetaNombreJugador.setBounds(590,200,600,70);
-			etiquetaNombreJugador.setFont(new Font("Cooper Black", Font.PLAIN, 30));
+			etiquetaNombreJugador.setBounds(530,200,600,70);
+			etiquetaNombreJugador.setForeground(Color.BLACK);
+			etiquetaNombreJugador.setFont(new Font("AngryBirds", Font.PLAIN, 50));
 			
 			
 			//Caja de texto donde se coloca el nombre del jugador
@@ -84,7 +87,7 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			
 			iniciarJuego = new JButton("Iniciar juego");
 			iniciarJuego.setBounds(590,400,300,45);
-			iniciarJuego.setFont(new Font("Cooper Black", Font.PLAIN, 15));
+			iniciarJuego.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			iniciarJuego.addActionListener(this);					//Para detectar y manejar los eventos de una accion, osea presionarlo
 			
 			
@@ -93,7 +96,7 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			
 			puntajes = new JButton("Puntajes");
 			puntajes.setBounds(590,480,300,45);
-			puntajes.setFont(new Font("Cooper Black", Font.PLAIN, 15));
+			puntajes.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			puntajes.addActionListener(this);
 			
 			
@@ -101,7 +104,7 @@ public class MenuDeInicio extends JFrame implements ActionListener{
 			//Boton para salir 
 			salir = new JButton("Salir");
 			salir.setBounds(590,560,300,45);
-			salir.setFont(new Font("Cooper Black", Font.PLAIN, 15));
+			salir.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			salir.addActionListener(this);
 			
 			

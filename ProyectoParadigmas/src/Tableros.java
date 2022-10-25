@@ -624,8 +624,7 @@ public class Tableros implements ActionListener {
 
 					matrizBotones[i][j] = new JButton();
 					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 70, 70);
-					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(
-					matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
+					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(matrizBotones[i][j].getWidth(), matrizBotones[i][j].getHeight(), Image.SCALE_SMOOTH)));
 					matrizBotones[i][j].setBorder(null);
 					matrizBotones[i][j].setCursor(new Cursor(Cursor.HAND_CURSOR));
 					panelJuego.add(matrizBotones[i][j], new Integer(10));
@@ -1141,29 +1140,49 @@ public class Tableros implements ActionListener {
 
 	creacionxml xml = new creacionxml();
 
-	public String obtenerNombreInicio;
+	public String obtenerNombreJugador1 = "";
+	public String obtenerNombreJugador2 = "";
+	public int puntuacionJugador1xml = 0;
+	public int puntuacionJugador2xml = 0;
+
 	public String modoJugado;
 	public String dificultadJugada;
-	String nombreJugador2 = "";
 
 	public void juegoTerminado() {
 		if (contadorPares == CartasAjugar) {
-			obtenerNombreInicio = nombreJugador.getText();
+			
 			modoJugado = tipoModo.getText();
 			dificultadJugada = tipoDificultad.getText();
 
-			if (labelNombreJugadorDos.getText() == "") {
-				nombreJugador2 = "Jugador2";
+			
+			if (puntuacion > puntuacionJugador2){
+				obtenerNombreJugador1 = nombreJugador.getText();
+				puntuacionJugador1xml = getPuntuacion();
 
-			} else {
-				nombreJugador2 = labelNombreJugadorDos.getText();
+				obtenerNombreJugador2 = labelNombreJugadorDos.getText();
+				puntuacionJugador2xml = getPuntuacionJugador2();
+			} else if(puntuacionJugador2 > puntuacion){
+
+				obtenerNombreJugador1 = labelNombreJugadorDos.getText();
+				puntuacionJugador1xml = getPuntuacionJugador2();
+
+				obtenerNombreJugador2 = nombreJugador.getText();
+				puntuacionJugador2xml = getPuntuacion();
+
+			}else{
+
+				obtenerNombreJugador1 = nombreJugador.getText();
+				puntuacionJugador1xml = getPuntuacion();
+
+				obtenerNombreJugador2 = labelNombreJugadorDos.getText();
+				puntuacionJugador2xml = getPuntuacionJugador2();
 			}
+
 
 			System.out.println("El juego terminó");
 			tarea.cancel();
 			tiempo.cancel();
-			xml.crearArchivo(puntuacion, obtenerNombreInicio, min, seg, modoJugado, nombreJugador2, puntuacionJugador2,
-					dificultadJugada);
+			xml.crearArchivo(puntuacionJugador1xml, obtenerNombreJugador1, min, seg, modoJugado, obtenerNombreJugador2, puntuacionJugador2xml,dificultadJugada);
 
 			xml.registrosXML();
 			if (puntuacion != puntuacionJugador2) {

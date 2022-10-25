@@ -41,7 +41,7 @@ public class puntajes {
 
         };
   
-        //        tabla.setGridColor(Color.WHITE);
+        //tabla.setGridColor(Color.WHITE);
 
         //No permite que se cambien las columnas de lugar en la tabla
         tabla.getTableHeader().setReorderingAllowed(false) ;

@@ -23,17 +23,15 @@ import org.xml.sax.SAXException;
 
 public class creacionxml {
 	
-/**
- * 
- * @param puntos
- * @param nombreJugador
- * @param minutos
- * @param segundos
- * @param modoSelecciondo
- * @param nombreJugador2
- * @param puntuacionJugador2
- * @param dificultadString
- */
+	private String tempNombre;
+	private String tempPuntuacion;
+	private String tempTiempoAPoner;
+	private String tempModo;
+	private String tempDificultad;
+
+
+
+
 
 	public String[][] datosXML = new String[3][5];
 
@@ -41,17 +39,34 @@ public class creacionxml {
 		return datosXML;
 	}
 	
+	/**
+	 * 
+	 * @param puntos
+	 * @param nombreJugador
+	 * @param minutos
+	 * @param segundos
+	 * @param modoSelecciondo
+	 * @param nombreJugador2
+	 * @param puntuacionJugador2
+	 * @param dificultadString
+	 */
 
 	public void crearArchivo(int puntos,String nombreJugador, int minutos, int segundos,String modoSelecciondo, String nombreJugador2,int puntuacionJugador2, String dificultadString){
 		
-		String seg;
+		String tiempoAponer;
 		//String puntosJugador = String.valueOf(obternerDatos.getPuntuacion());
 		if (segundos <10 ){
-			seg = "0"+String.valueOf(segundos);
+			tiempoAponer = String.valueOf(minutos)+":"+"0"+String.valueOf(segundos);
 		}
 		else{
-			seg = String.valueOf(segundos);
+			tiempoAponer = String.valueOf(minutos)+":"+String.valueOf(segundos);
 		}
+
+
+		
+
+
+
 
 
         try {
@@ -81,7 +96,7 @@ public class creacionxml {
 			puntaje.appendChild(dificultad);
 
 			Element tiempo = documento.createElement("tiempo");
-			Text textTiempo= documento.createTextNode(String.valueOf(minutos)+":"+seg);
+			Text textTiempo= documento.createTextNode(tiempoAponer);
 			tiempo.appendChild(textTiempo);
 			puntaje.appendChild(tiempo);
 
@@ -112,7 +127,7 @@ public class creacionxml {
 			puntaje2.appendChild(dificultad2);
 			
 			Element tiempo2 = documento.createElement("tiempo");
-			Text textTiempo2= documento.createTextNode(String.valueOf(minutos)+":"+seg);
+			Text textTiempo2= documento.createTextNode(tiempoAponer);
 			tiempo2.appendChild(textTiempo2);
 			puntaje2.appendChild(tiempo2);
 
@@ -133,7 +148,7 @@ public class creacionxml {
 			puntaje3.appendChild(nombre3);
 			
 			Element modo3 = documento.createElement("modo");
-			Text textModo3 = documento.createTextNode("Solo");
+			Text textModo3 = documento.createTextNode("Maquina");
 			modo3.appendChild(textModo3);
 			puntaje3.appendChild(modo3);
 
@@ -148,7 +163,7 @@ public class creacionxml {
 			puntaje3.appendChild(tiempo3);
 
             Element puntuacion3 = documento.createElement("puntuacion");
-			Text textPuntuacon3= documento.createTextNode(String.valueOf("180"));
+			Text textPuntuacon3= documento.createTextNode(String.valueOf("120"));
 			puntuacion3.appendChild(textPuntuacon3);
 			puntaje3.appendChild(puntuacion3);	
 			
@@ -217,9 +232,5 @@ public class creacionxml {
 		} catch (ParserConfigurationException | SAXException | IOException ex) {
 			System.out.println("h");
 		}
-
-
-
-
 	}
 }

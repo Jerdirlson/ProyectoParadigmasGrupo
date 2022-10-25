@@ -1,6 +1,8 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Image;
+import java.awt.Cursor;
 
 import javax.swing.*;
 public class Menu extends JFrame implements ActionListener{
@@ -77,15 +79,17 @@ public class Menu extends JFrame implements ActionListener{
 			//Creacion etiquetaTitulo
 			
 			etiquetaTitulo = new JLabel ("Elija los modos de juego");  //Se establece lo que debe contener la etiqueta 
-			etiquetaTitulo.setBounds(300, 80, 900, 100);		//Se utiliza para definir un rectangulo delimitador para la etiqueta 
-			etiquetaTitulo.setFont(new Font("Cooper Black", Font.PLAIN, 65));		//se usa para definir el tipo de letra y el tamaño
+			etiquetaTitulo.setBounds(250, 80, 900, 100);
+			etiquetaTitulo.setHorizontalAlignment(JTextField.CENTER);
+					//Se utiliza para definir un rectangulo delimitador para la etiqueta 
+			etiquetaTitulo.setFont(new Font("AngryBirds", Font.PLAIN, 65));		//se usa para definir el tipo de letra y el tamaño
 			panelMenu.add(etiquetaTitulo, new Integer(2));	
 			
 			//Dificultad
 			
 			etiquetaDificultad = new JLabel ("Dificultades");
-			etiquetaDificultad.setBounds(250,180,400,60);
-			etiquetaDificultad.setFont(new Font("Showcard Gothic", Font.PLAIN, 40));
+			etiquetaDificultad.setBounds(300,180,400,60);
+			etiquetaDificultad.setFont(new Font("AngryBirds", Font.PLAIN, 40));
 			panelMenu.add(etiquetaDificultad, new Integer(3));
 			
 			//Creacion de los botones
@@ -93,7 +97,7 @@ public class Menu extends JFrame implements ActionListener{
 			//Creacion del primer boton con dificultad 4x4
 			boton1dificultad = new JToggleButton ("4x4", false);
 			boton1dificultad.setBounds(320,250,150,80);
-			boton1dificultad.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			boton1dificultad.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			panelMenu.add(boton1dificultad,new Integer(4));
 			boton1dificultad.addActionListener(this);
 			
@@ -101,7 +105,7 @@ public class Menu extends JFrame implements ActionListener{
 			
 			boton2dificultad = new JToggleButton ("6x6", false);
 			boton2dificultad.setBounds(320,370,150,80);
-			boton2dificultad.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			boton2dificultad.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			panelMenu.add(boton2dificultad, new Integer(5));
 			boton2dificultad.addActionListener(this);
 			
@@ -109,7 +113,7 @@ public class Menu extends JFrame implements ActionListener{
 			
 			boton3dificultad = new JToggleButton ("8x8", false);
 			boton3dificultad.setBounds(320,490,150,80);
-			boton3dificultad.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			boton3dificultad.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			panelMenu.add(boton3dificultad,new Integer(6));
 			boton3dificultad.addActionListener(this);
 			
@@ -117,15 +121,15 @@ public class Menu extends JFrame implements ActionListener{
 			//Modos de juego
 			
 			etiquetaModo = new JLabel("Modo de juego");
-			etiquetaModo.setBounds(850, 180, 400, 60);
-			etiquetaModo.setFont(new Font("Showcard Gothic", Font.PLAIN, 40));
+			etiquetaModo.setBounds(880, 180, 400, 60);
+			etiquetaModo.setFont(new Font("AngryBirds", Font.PLAIN, 40));
 			panelMenu.add(etiquetaModo, new Integer(7));
 			
 			//Creacion de boton modo solo
 			
 			boton1modo = new JToggleButton ("Solo", false);
 			boton1modo.setBounds(920,250,150,80);
-			boton1modo.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			boton1modo.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			panelMenu.add(boton1modo,new Integer(8));
 			boton1modo.addActionListener(this);
 			
@@ -133,7 +137,7 @@ public class Menu extends JFrame implements ActionListener{
 			
 			boton2modo = new JToggleButton ("1VS1", false);
 			boton2modo.setBounds(920,370,150,80);
-			boton2modo.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			boton2modo.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			panelMenu.add(boton2modo, new Integer(9));
 			boton2modo.addActionListener(this);
 			
@@ -141,15 +145,28 @@ public class Menu extends JFrame implements ActionListener{
 			
 			boton3modo = new JToggleButton ("VS BOT", false);
 			boton3modo.setBounds(920,490,150,80);
-			boton3modo.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			boton3modo.setFont(new Font("AngryBirds", Font.PLAIN, 20));
 			panelMenu.add(boton3modo, new Integer(10));
 			boton3modo.addActionListener(this);
 			
 			//Creacion del boton jugar
 			
-			botonJugar = new JButton ("Jugar!!");
+			botonJugar = new JButton ();
 			botonJugar.setBounds(600, 620, 200, 80);
 			botonJugar.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			botonJugar.setOpaque(true);
+			botonJugar.setFocusPainted(false);
+			botonJugar.setBorderPainted(false);
+			botonJugar.setContentAreaFilled(false);
+			botonJugar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			ImageIcon botonJugar1 = new ImageIcon("imagenes/botonJugar.png");
+			botonJugar.setIcon(new ImageIcon(botonJugar1.getImage().getScaledInstance(200,80,Image.SCALE_SMOOTH)));
+
+
+
+			botonJugar.setBorder(null);
+
+
 			panelMenu.add(botonJugar, new Integer(11));
 			botonJugar.addActionListener(this);
 			
