@@ -60,9 +60,20 @@ public class Menu extends JFrame implements ActionListener{
 			panelMenu.setVisible(true);
 			ventanaMenu.add(panelMenu,0); 
 			
-			botonSalir = new JButton("Salir");
+			botonSalir = new JButton();
          	botonSalir.setBounds(55, 25, 100, 50);
-         	botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+			botonSalir.setOpaque(true);
+			botonSalir.setFocusPainted(false);
+			botonSalir.setBorderPainted(false);
+			botonSalir.setContentAreaFilled(false);
+			botonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			ImageIcon botonSalirImg = new ImageIcon("imagenes/botonSalir.png");
+			botonSalir.setIcon(new ImageIcon(botonSalirImg.getImage().getScaledInstance(100,50,Image.SCALE_SMOOTH)));
+
+
+
+
+
          	botonSalir.addActionListener(this);
          	ventanaMenu.add(botonSalir);
 			

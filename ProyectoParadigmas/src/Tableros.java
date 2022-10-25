@@ -92,11 +92,20 @@ public class Tableros implements ActionListener {
 		fondoPanel.setLocation(0, 0); // nos permite definir desde donde va a empezar la imagen
 		panel.add(fondoPanel, new Integer(1)); // Agregamos el fondo al panelPresentacion
 
-		botonSalir = new JButton("Salir");
-		botonSalir.setBounds(55, 25, 100, 50);
-		botonSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-		botonSalir.addActionListener(this);
+		botonSalir = new JButton();
+		botonSalir.setBounds(50, 25, 100, 50);
+		
+		botonSalir.setOpaque(true);
+		botonSalir.setFocusPainted(false);
+		botonSalir.setBorderPainted(false);
+		botonSalir.setContentAreaFilled(false);
 		botonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		ImageIcon botonSalirImg = new ImageIcon("imagenes/botonSalir.png");
+		botonSalir.setIcon(new ImageIcon(botonSalirImg.getImage().getScaledInstance(100,50,Image.SCALE_SMOOTH)));
+		botonSalir.addActionListener(this);
+		
+	
+		
 		panel.add(botonSalir, new Integer(2));
 
 		// ----------------------------------------Panel
@@ -121,22 +130,22 @@ public class Tableros implements ActionListener {
 
 		tipoDificultad = new JLabel();
 		tipoDificultad.setBounds(50, 20, 500, 100);
-		tipoDificultad.setFont(new Font("Showcard Gothic", Font.PLAIN, 45));
+		tipoDificultad.setFont(new Font("AngryBirds", Font.PLAIN, 50));
 		panelGeneral.add(tipoDificultad, new Integer(3));
 
 		tipoModo = new JLabel();
 		tipoModo.setBounds(200, 20, 500, 100);
-		tipoModo.setFont(new Font("Showcard Gothic", Font.PLAIN, 45));
+		tipoModo.setFont(new Font("AngryBirds", Font.PLAIN, 50));
 		panelGeneral.add(tipoModo, new Integer(4));
 
 		nombreJugador = new JLabel();
 		nombreJugador.setBounds(50, 100, 500, 100);
-		nombreJugador.setFont(new Font("Showcard Gothic", Font.PLAIN, 35));
+		nombreJugador.setFont(new Font("AngryBirds", Font.PLAIN, 40));
 		panelGeneral.add(nombreJugador, new Integer(2));
 
 		cronometro = new JLabel();
 		cronometro.setBounds(50, 490, 500, 100);
-		cronometro.setFont(new Font("Showcard Gothic", Font.PLAIN, 35));
+		cronometro.setFont(new Font("AngryBirds", Font.PLAIN, 40));
 		panelGeneral.add(cronometro, new Integer(2));
 
 		// ----------------------------------------Panel
@@ -488,7 +497,7 @@ public class Tableros implements ActionListener {
 
 		ponerPuntuacion = new JLabel();
 		ponerPuntuacion.setBounds(50, 180, 500, 100);
-		ponerPuntuacion.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		ponerPuntuacion.setFont(new Font("AngryBirds", Font.PLAIN, 35));
 		ponerPuntuacion.setText("Puntuacion: " + getPuntuacion());
 		panelGeneral.add(ponerPuntuacion, new Integer(7));
 
@@ -499,7 +508,7 @@ public class Tableros implements ActionListener {
 
 		ponerPuntuacionJugadorDos = new JLabel();
 		ponerPuntuacionJugadorDos.setBounds(50, 330, 500, 100);
-		ponerPuntuacionJugadorDos.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		ponerPuntuacionJugadorDos.setFont(new Font("AngryBirds", Font.PLAIN, 35));
 		ponerPuntuacionJugadorDos.setText("Puntuacion: " + getPuntuacionJugador2());
 		panelGeneral.add(ponerPuntuacionJugadorDos, new Integer(8));
 
@@ -512,7 +521,7 @@ public class Tableros implements ActionListener {
 
 		labelNombreJugadorDos = new JLabel();
 		labelNombreJugadorDos.setBounds(50, 250, 500, 100);
-		labelNombreJugadorDos.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		labelNombreJugadorDos.setFont(new Font("AngryBirds", Font.PLAIN, 35));
 		panelGeneral.add(labelNombreJugadorDos, new Integer(9));
 
 	}
@@ -522,7 +531,7 @@ public class Tableros implements ActionListener {
 
 		turnos = new JLabel();
 		turnos.setBounds(50, 410, 500, 100);
-		turnos.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		turnos.setFont(new Font("AngryBirds", Font.PLAIN, 35));
 		turnos.setText("Jugador 1");
 		panelGeneral.add(turnos, new Integer(10));
 

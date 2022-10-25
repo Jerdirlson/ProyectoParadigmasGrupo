@@ -28,7 +28,7 @@ public class creacionxml {
 	private String tempTiempoAPoner;
 	private String tempModo;
 	private String tempDificultad;
-
+	private int contador = 1; 
 
 
 
@@ -61,9 +61,22 @@ public class creacionxml {
 		else{
 			tiempoAponer = String.valueOf(minutos)+":"+String.valueOf(segundos);
 		}
+		if(contador == 0){
+			tempNombre= "";
+			tempPuntuacion= "";
+			tempTiempoAPoner= "";
+			tempModo= "";
+			tempDificultad = "";
+		}else if(contador == 1) {
+			tempNombre= nombreJugador;
+			tempPuntuacion= String.valueOf(puntos);
+			tempTiempoAPoner= tiempoAponer;
+			tempModo= modoSelecciondo;
+			tempDificultad = dificultadString;
 
-
-		
+		}
+		contador++;
+		System.out.println(contador);
 
 
 
@@ -143,27 +156,27 @@ public class creacionxml {
 			Element puntaje3 = documento.createElement("puntaje");
 			
 			Element nombre3 = documento.createElement("nombre");
-			Text textNombre3 = documento.createTextNode("Juan");
+			Text textNombre3 = documento.createTextNode(tempNombre);
             nombre3.appendChild(textNombre3);
 			puntaje3.appendChild(nombre3);
 			
 			Element modo3 = documento.createElement("modo");
-			Text textModo3 = documento.createTextNode("Maquina");
+			Text textModo3 = documento.createTextNode(tempModo);
 			modo3.appendChild(textModo3);
 			puntaje3.appendChild(modo3);
 
 			Element dificultad3 = documento.createElement("dificultad");
-			Text textDificultad3 = documento.createTextNode("6x6");
+			Text textDificultad3 = documento.createTextNode(tempDificultad);
 			dificultad3.appendChild(textDificultad3);
 			puntaje3.appendChild(dificultad3);
 			
 			Element tiempo3 = documento.createElement("tiempo");
-			Text textTiempo3= documento.createTextNode("0:42");
+			Text textTiempo3= documento.createTextNode(tempTiempoAPoner);
 			tiempo3.appendChild(textTiempo3);
 			puntaje3.appendChild(tiempo3);
 
             Element puntuacion3 = documento.createElement("puntuacion");
-			Text textPuntuacon3= documento.createTextNode(String.valueOf("120"));
+			Text textPuntuacon3= documento.createTextNode(tempPuntuacion);
 			puntuacion3.appendChild(textPuntuacon3);
 			puntaje3.appendChild(puntuacion3);	
 			
