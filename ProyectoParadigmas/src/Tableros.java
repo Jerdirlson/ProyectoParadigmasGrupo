@@ -648,6 +648,7 @@ public class Tableros implements ActionListener {
 				int positionBotony = 0;
 				for (int j = 0; j < size; j++) {
 
+					
 					matrizBotones[i][j] = new JButton();
 					matrizBotones[i][j].setBounds(50 + positionBotony, 50 + positionBotonx, 96, 96);
 					matrizBotones[i][j].setIcon(new ImageIcon(interrogante.getImage().getScaledInstance(
